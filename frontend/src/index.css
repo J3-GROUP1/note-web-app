@@ -34,13 +34,13 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 750px;
+  height: 93vh;
 }
 
 .bg-image-2 {
-  background-image: url("../public/images/login-signup.png");
+  background-image: url("./images/login-signup.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 750px;
+  height: 93vh;
 }
