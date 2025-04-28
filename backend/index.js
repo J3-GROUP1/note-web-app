@@ -338,7 +338,7 @@ app.put("/update-note-pinned/:noteId", authenticateToken, async (req, res) => {
 const port = 5000;
 
 app.listen(port, () => {
-  console.log(Server is running on http://localhost:${port});
+  console.log(`Server is running on http://localhost:${port}`);
 });
 
 module.exports = app;
