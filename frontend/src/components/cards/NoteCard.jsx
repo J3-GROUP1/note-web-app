@@ -22,7 +22,7 @@ export default function NoteCard({
         </div>
 
         <MdOutlinePushPin
-          className={icon-btn ${isPinned ? "text-primary" : "text-slate-300"}}
+          className={`icon-btn ${isPinned ? "text-primary" : "text-slate-300"}`}
           onClick={onPinNote}
         />
       </div>
