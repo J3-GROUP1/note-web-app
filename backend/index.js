@@ -27,6 +27,8 @@ app.use(express.json()); // Added middleware to parse JSON request bodies
 
 app.get("/", (req, res) => {
   res.json({ data: "Hello from the backend!" });
+
+  // async function to get user details
 });
 
 // Create Account
@@ -216,7 +218,7 @@ app.put("/edit-note/:id", authenticateToken, async (req, res) => {
   }
 
   try {
-    const note = await Note.findOneAndUpdate({
+    const note = await Note.findOne({
       _id: noteId,
       userId: user.user._id,
     });
@@ -326,6 +328,40 @@ app.put("/update-note-pinned/:noteId", authenticateToken, async (req, res) => {
       error: false,
       message: "Note updated successfully!",
       note,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error: true,
+      message: "Internal Server Error!",
+    });
+  }
+});
+
+// Search notes
+app.get("/search-notes/", authenticateToken, async (req, res) => {
+  const { user } = req.user;
+  const { query } = req.query;
+
+  if (!query) {
+    return res.status(400).json({
+      error: true,
+      message: "Search query is required!",
+    });
+  }
+
+  try {
+    const matchingNotes = await Note.find({
+      userId: user.user._id,
+      $or: [
+        { title: { $regex: new RegExp(query, "i") } },
+        { content: { $regex: new RegExp(query, "i") } },
+      ],
+    });
+
+    return res.status(200).json({
+      error: false,
+      message: "Notes matching the query retrieved successfully!",
+      notes: matchingNotes,
     });
   } catch (error) {
     return res.status(500).json({
