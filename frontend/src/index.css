@@ -30,17 +30,17 @@
 }
 
 .bg-image {
-  background-image: url("../public/images/landing-page.png");
+  background-image: url("./images/landing-page.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 750px;
+  height: 100vh;
 }
 
 .bg-image-2 {
-  background-image: url("../public/images/login-signup.png");
+  background-image: url("./images/login-signup.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 750px;
+  height: 100vh;
 }
