@@ -1,38 +1,71 @@
 import { useState } from "react";
 import TagInput from "../../components/Input/TagInput";
 import { MdClose } from "react-icons/md";
+import axiosInstance from "../../utils/axiosInstance";
 
-export default function AddEditNotes({ noteData, type, onClose }) {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [tags, setTags] = useState([]);
+export default function AddEditNotes({
+  noteData,
+  type,
+  getAllNotes,
+  onClose,
+  showToastMessage,
+}) {
+  const [title, setTitle] = useState(noteData?.title || "");
+  const [content, setContent] = useState(noteData?.content || "");
+  const [tags, setTags] = useState(noteData?.tags || []);
 
   const [error, setError] = useState(null);
 
   // Add Note
   const addNewNote = async () => {
-    const newNote = {
-      title,
-      content,
-      tags,
-    };
+    try {
+      const response = await axiosInstance.post("/add-note", {
+        title,
+        content,
+        tags,
+      });
 
-    // Call API to add note
-    console.log("Adding new note:", newNote);
-    onClose();
+      if (response.data && response.data.note) {
+        showToastMessage("Note Added Successfully!");
+        getAllNotes();
+        onClose();
+      }
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setError(error.response.data.message);
+      }
+    }
   };
 
   // Edit Note
   const editNote = async () => {
-    const updatedNote = {
-      title,
-      content,
-      tags,
-    };
+    const noteId = noteData._id;
 
-    // Call API to update note
-    console.log("Updating note:", updatedNote);
-    onClose();
+    try {
+      const response = await axiosInstance.put("/edit-note/" + noteId, {
+        title,
+        content,
+        tags,
+      });
+
+      if (response.data && response.data.note) {
+        showToastMessage("Note Updated Successfully!");
+        getAllNotes();
+        onClose();
+      }
+    } catch (error) {
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setError(error.response.data.message);
+      }
+    }
   };
 
   const handleAddNote = () => {
@@ -97,7 +130,7 @@ export default function AddEditNotes({ noteData, type, onClose }) {
         className="btn-primary2 font-medium mt-5 p-3"
         onClick={handleAddNote}
       >
-        ADD
+        {type === "edit" ? "UPDATE" : "ADD"}
       </button>
     </div>
   );
