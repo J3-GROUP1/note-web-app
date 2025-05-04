@@ -1,0 +1,41 @@
+name: Test for Note Web App
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: node:20
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Run build
+        working-directory: ./frontend
+        run: npm run build
+
+      - name: Install dependencies
+        working-directory: ./backend
+        run: npm install
+
+      - name: Set up environment variables
+        working-directory: ./backend
+        run: |
+          echo "ACCESS_TOKEN_SECRET=${{ secrets.ACCESS_TOKEN_SECRET }}" > .env
+
+      - name: Run backend tests
+        working-directory: ./backend
+        run: npm run test

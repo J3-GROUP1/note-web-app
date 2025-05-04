@@ -29,7 +29,7 @@ export default function Login() {
 
     // Login API call
     try {
-      const response = await axiosInstance.post("/login", {
+      const response = await axiosInstance.post("api/auth/login", {
         email: email,
         password: password,
       });
