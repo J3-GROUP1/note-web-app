@@ -19,7 +19,7 @@ export default function AddEditNotes({
   // Add Note
   const addNewNote = async () => {
     try {
-      const response = await axiosInstance.post("/add-note", {
+      const response = await axiosInstance.post("api/notes/add-note", {
         title,
         content,
         tags,
@@ -46,11 +46,14 @@ export default function AddEditNotes({
     const noteId = noteData._id;
 
     try {
-      const response = await axiosInstance.put("/edit-note/" + noteId, {
-        title,
-        content,
-        tags,
-      });
+      const response = await axiosInstance.put(
+        "api/notes/edit-note/" + noteId,
+        {
+          title,
+          content,
+          tags,
+        }
+      );
 
       if (response.data && response.data.note) {
         showToastMessage("Note Updated Successfully!");

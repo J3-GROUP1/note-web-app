@@ -53,7 +53,7 @@ export default function Home() {
   // Get User Info
   const getUserInfo = async () => {
     try {
-      const response = await axiosInstance.get("/get-user");
+      const response = await axiosInstance.get("api/users/get-user");
       if (response.data && response.data.user) {
         setUserInfo(response.data.user);
       }
@@ -68,7 +68,7 @@ export default function Home() {
   // Get all notes
   const getAllNotes = async () => {
     try {
-      const response = await axiosInstance.get("/get-all-notes");
+      const response = await axiosInstance.get("api/notes/get-all-notes");
 
       if (response.data && response.data.notes) {
         setAllNotes(response.data.notes);
@@ -83,7 +83,9 @@ export default function Home() {
     const noteId = data._id;
 
     try {
-      const response = await axiosInstance.delete("/delete-note/" + noteId);
+      const response = await axiosInstance.delete(
+        "api/notes/delete-note/" + noteId
+      );
 
       if (response.data && !response.data.error) {
         showToastMessage("Note Deleted Successfully!", "delete");
@@ -103,7 +105,7 @@ export default function Home() {
   // Search for a Note
   const onSearchNote = async (query) => {
     try {
-      const response = await axiosInstance.get("/search-notes", {
+      const response = await axiosInstance.get("api/notes/search-notes", {
         params: { query },
       });
 
@@ -123,7 +125,7 @@ export default function Home() {
 
     try {
       const response = await axiosInstance.put(
-        "/update-note-pinned/" + noteId,
+        "api/notes/update-note-pinned/" + noteId,
         {
           isPinned,
         }
