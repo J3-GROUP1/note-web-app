@@ -190,7 +190,7 @@ export default function Home() {
       </div>
 
       <button
-        className="w-16 h-16 flex items-center justify-center rounded-2xl bg-primary hover:bg-blue-600 absolute right-10 bottom-10"
+        className="w-16 h-16 flex items-center justify-center rounded-2xl bg-primary hover:bg-blue-600 absolute right-10 bottom-10 cursor-pointer"
         onClick={() => {
           setOpenAddEditModal({ isShown: true, type: "add", data: null });
         }}
