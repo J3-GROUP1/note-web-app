@@ -18,7 +18,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm install
+
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm ci
+      - run: npm run build
+
+      - name: Install dependencies
+        working-directory: ./backend
+        run: npm ci
+
       - name: Run backend tests
         working-directory: ./backend
         run: npm test
