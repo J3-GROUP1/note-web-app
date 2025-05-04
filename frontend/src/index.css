@@ -21,6 +21,18 @@
   .btn-primary {
     @apply w-full text-sm bg-dark text-white p-3 rounded-[24px] my-1 hover:bg-gray-200 hover:text-dark hover:cursor-pointer;
   }
+
+  .btn-primary2 {
+    @apply w-full text-sm bg-primary text-white p-3 my-1 hover:bg-gray-200 hover:text-primary hover:cursor-pointer;
+  }
+
+  .icon-btn {
+    @apply text-xl text-slate-300 cursor-pointer hover:text-primary;
+  }
+
+  .input-label {
+    @apply text-xs text-slate-400;
+  }
 }
 
 @theme {
