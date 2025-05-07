@@ -42,7 +42,7 @@
 }
 
 .bg-image {
-  background-image: url("./images/landing-page.png");
+  background-image: url("/assets/images/landing-page.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -50,7 +50,7 @@
 }
 
 .bg-image-2 {
-  background-image: url("./images/login-signup.png");
+  background-image: url("/assets/images/login-signup.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
