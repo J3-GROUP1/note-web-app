@@ -9,12 +9,13 @@ import SignUp from "./pages/SignUp/SignUp";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import Landing from "./pages/Landing/Landing";
+import MainLanding from "./pages/Landing/MainLanding";
 import "./App.css";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="/" element={<Landing />}></Route>
+      <Route path="/" element={<MainLanding />}></Route>
       <Route path="/dashboard" element={<Home />}></Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/login" element={<Login />}></Route>
