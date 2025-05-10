@@ -16,7 +16,7 @@ export default function Landing() {
             Create Your Notes, Capture Ideas & Stay Organized
           </h1>
           <p className="text-white mt-2 max-w-[500px] mx-auto leading-[1.8]">
-            The ultimate note-taking app designed to keep your thoughts, to-dos,
+            The best and ultimate note-taking app designed to keep your thoughts, to-dos,
             and ideas in one seamless space.
           </p>
         </div>
