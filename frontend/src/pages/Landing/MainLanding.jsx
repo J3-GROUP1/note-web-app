@@ -32,7 +32,7 @@ export default function MainLanding() {
         </Link>
       </nav>
       <div className="hero">
-        <h1 className="header">Create Your Notes, Ideas & Stay Organized</h1>
+        <h1 className="header">J3 Notes</h1>
         <p className="description">
           The ultimate note-taking app designed to keep your thoughts, to-dos,
           and ideas in one seamless space.
